@@ -1,3 +1,52 @@
+# ReliefNet Starter Build
+
+This repository includes an active starter for:
+
+- **Backend:** Node.js + Express + PostgreSQL
+- **Frontend:** Flutter (Android-first)
+
+## Structure
+
+- `backend/` Express API server + SQL migrations + backend tests
+- `frontend_flutter/` Flutter mobile app
+- `always_running_execution_plan.md` availability and ops plan
+
+## Backend setup
+
+```bash
+cd backend
+npm install
+cp .env.example .env
+npm run migrate
+npm run dev
+```
+
+### Backend endpoints
+
+- `GET /health`
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `GET /api/disasters`
+- `POST /api/disasters`
+- `POST /api/donations` (donor token required)
+- `PATCH /api/donations/:donationId/approve` (admin token required)
+
+### Run backend tests
+
+```bash
+cd backend
+npm test
+```
+
+## Flutter setup
+
+```bash
+cd frontend_flutter
+flutter pub get
+flutter run
+```
+
+For Android emulator, backend URL uses `10.0.2.2:4000` in `main.dart`.
 # ReliefNet Starter Implementation
 
 This repository now includes a starter implementation based on the project plan:

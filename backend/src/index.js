@@ -1,3 +1,10 @@
+import dotenv from 'dotenv';
+import app from './app.js';
+import { runMigrations } from './services/migrate.js';
+
+dotenv.config();
+const port = process.env.PORT || 4000;
+
 import express from 'express';
 import dotenv from 'dotenv';
 import { checkDatabase } from './db.js';
