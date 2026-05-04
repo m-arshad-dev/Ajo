@@ -11,6 +11,20 @@ import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
 
 const app = express();
 app.use(express.json());
+import cors from 'cors';
+import helmet from 'helmet';
+import healthRoutes from './routes/healthRoutes.js';
+import { errorHandler } from './middleware/errorHandler.js';
+
+
+
+const app = express();
+
+app.use(helmet());
+app.use(cors());
+app.use(express.json());
+app.use(errorHandler);
+
 
 app.get('/health', async (_req, res) => {
   try {
@@ -20,6 +34,21 @@ app.get('/health', async (_req, res) => {
     res.status(500).json({ status: 'error', service: 'reliefnet-backend', database: 'disconnected' });
   }
 });
+    res.status(200).json({
+      status: 'ok',
+      service: 'reliefnet-backend',
+      database: 'connected',
+      timestamp: db.now
+    });
+  } catch {
+    res.status(500).json({
+      status: 'error',
+      service: 'reliefnet-backend',
+      database: 'disconnected'
+    });
+  }
+});
+app.use('/api', healthRoutes);
 
 app.use('/api/auth', authRoutes);
 app.use('/api/disasters', disasterRoutes);
@@ -31,5 +60,9 @@ app.use('/api/escrow', escrowRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
+
+
+
+
 
 export default app;

@@ -5,5 +5,9 @@ void main() {
   testWidgets('renders ReliefNet Login title', (WidgetTester tester) async {
     await tester.pumpWidget(const ReliefNetApp());
     expect(find.text('ReliefNet Login'), findsOneWidget);
+  testWidgets('renders ReliefNet Dashboard title', (WidgetTester tester) async {
+    await tester.pumpWidget(const ReliefNetApp());
+
+    expect(find.text('ReliefNet Dashboard'), findsOneWidget);
   });
 }
