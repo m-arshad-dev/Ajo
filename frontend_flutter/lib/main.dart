@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'screens/auth_screen.dart';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -15,6 +17,8 @@ class ReliefNetApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'ReliefNet',
+      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent), useMaterial3: true),
+      home: const AuthScreen(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent),
         useMaterial3: true,
