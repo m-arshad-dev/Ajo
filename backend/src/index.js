@@ -29,7 +29,9 @@ app.get('/health', async (_req, res) => {
   }
 });
 
+app.use('/api/auth', authRoutes);
 app.use('/api/disasters', disasterRoutes);
+app.use('/api/donations', donationRoutes);
 
 async function boot() {
   await runMigrations();
