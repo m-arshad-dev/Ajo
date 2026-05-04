@@ -3,9 +3,22 @@ import { checkDatabase } from './db.js';
 import disasterRoutes from './routes/disasters.js';
 import authRoutes from './routes/auth.js';
 import donationRoutes from './routes/donations.js';
+import helpRequestRoutes from './routes/helpRequests.js';
+import assignmentRoutes from './routes/assignments.js';
+import cors from 'cors';
+import helmet from 'helmet';
+import healthRoutes from './routes/healthRoutes.js';
+import { errorHandler } from './middleware/errorHandler.js';
+
+
 
 const app = express();
+
+app.use(helmet());
+app.use(cors());
 app.use(express.json());
+app.use(errorHandler);
+
 
 app.get('/health', async (_req, res) => {
   try {
@@ -24,26 +37,16 @@ app.get('/health', async (_req, res) => {
     });
   }
 });
+app.use('/api', healthRoutes);
 
 app.use('/api/auth', authRoutes);
 app.use('/api/disasters', disasterRoutes);
 app.use('/api/donations', donationRoutes);
-import cors from 'cors';
-import express from 'express';
-import helmet from 'helmet';
-import healthRoutes from './routes/healthRoutes.js';
-import disasterRoutes from './routes/disasterRoutes.js';
-import { errorHandler } from './middleware/errorHandler.js';
+app.use('/api/help-requests', helpRequestRoutes);
+app.use('/api/assignments', assignmentRoutes);
 
-const app = express();
 
-app.use(helmet());
-app.use(cors());
-app.use(express.json());
 
-app.use('/api', healthRoutes);
-app.use('/api/disasters', disasterRoutes);
 
-app.use(errorHandler);
 
 export default app;

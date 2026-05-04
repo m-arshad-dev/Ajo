@@ -27,6 +27,15 @@ npm run dev
 - `POST /api/auth/register`
 - `POST /api/auth/login`
 - `GET /api/disasters`
+- `POST /api/disasters` (admin token required)
+- `POST /api/donations` (donor token required)
+- `PATCH /api/donations/:donationId/approve` (admin token required)
+- `POST /api/help-requests` (victim token required)
+- `GET /api/help-requests` (admin/ngo token required)
+- `PATCH /api/help-requests/:requestId/status` (admin/ngo token required)
+- `POST /api/assignments` (admin token required)
+- `GET /api/assignments` (admin/ngo/volunteer token required)
+- `PATCH /api/assignments/:assignmentId/status` (admin/volunteer token required)
 - `POST /api/disasters`
 - `POST /api/donations` (donor token required)
 - `PATCH /api/donations/:donationId/approve` (admin token required)
