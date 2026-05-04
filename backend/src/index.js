@@ -3,8 +3,6 @@ import dotenv from 'dotenv';
 import { checkDatabase } from './db.js';
 import { runMigrations } from './services/migrate.js';
 import disasterRoutes from './routes/disasters.js';
-import authRoutes from './routes/auth.js';
-import donationRoutes from './routes/donations.js';
 
 dotenv.config();
 
