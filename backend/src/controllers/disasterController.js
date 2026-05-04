@@ -23,3 +23,16 @@ export async function createDisaster(req, res) {
 
   return res.status(201).json(result.rows[0]);
 }
+
+export async function listDisasters(_req, res, next) {
+  try {
+    const result = await pool.query(
+      'SELECT id, title, location, severity, status, created_at FROM disasters ORDER BY created_at DESC'
+    );
+    res.json(result.rows);
+  } catch (error) {
+    next(error);
+  }
+}
+
+
